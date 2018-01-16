@@ -12,8 +12,6 @@ export default {
     let timer = null
     let disableKeydown = false
 
-    el.$destroy = () => { disable() }
-
     // Cookie helpers
     const parseCookies = () => {
       const cookies = document.cookie.split('; ')
@@ -76,6 +74,8 @@ export default {
     }
 
     attachExitListener()
+
+    el.$destroy = () => { disable() }
   },
   unbind (el) {
     el.$destroy()
