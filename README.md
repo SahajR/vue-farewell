@@ -16,7 +16,7 @@ yarn add vue-farewell
 Install it globally
 ```js
 import Vue from 'vue'
-import { farewellDirectivePlugin } from './lib'
+import { farewellDirectivePlugin } from 'vue-farewell'
 
 Vue.use(farewellDirectivePlugin)
 ```
@@ -44,7 +44,7 @@ export default {
 | modifier | Description |
 | ------ | ------ |
 | aggressive | Will fire every time the user tries to leave |
-| flex | Will make the element display `flex` instead of `block` |
+| flex | Will make the popup provided to display `flex` instead of `block` |
 
 
 ## License
