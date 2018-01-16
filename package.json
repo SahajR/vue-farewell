@@ -21,7 +21,8 @@
     "e2e": "node test/e2e/runner.js",
     "test": "echo 'skipping tests until selenium is setup for travis'",
     "lint": "eslint --ext .js,.vue src test/e2e/specs",
-    "semantic-release": "semantic-release"
+    "semantic-release": "semantic-release",
+    "travis-deploy-once": "travis-deploy-once"
   },
   "dependencies": {
     "vue": "^2.3.3"
@@ -74,7 +75,8 @@
     "webpack-dev-middleware": "^1.10.0",
     "webpack-hot-middleware": "^2.18.0",
     "webpack-merge": "^4.1.0",
-    "semantic-release": "^12.2.2"
+    "semantic-release": "^12.2.2",
+    "travis-deploy-once": "^4.3.1"
   },
   "engines": {
     "node": ">= 4.0.0",
