@@ -1,6 +1,7 @@
 ![alt text](assets/logo.png "Demo GIF")
 # vue-farewell
 > A vue directive to know when a user is leaving the page
+> Inspired by [ouibounce](https://github.com/carlsednaoui/ouibounce)
 
 [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg?style=flat-square)](https://github.com/semantic-release/semantic-release)
 [![travis build](https://img.shields.io/travis/SahajR/pokemon-names-and-types.svg?style=flat-square)](https://travis-ci.org/SahajR/vue-farewell)
@@ -46,6 +47,15 @@ export default {
 | aggressive | Will fire every time the user tries to leave |
 | flex | Will make the popup provided to display `flex` instead of `block` |
 
+
+```vue
+<template>
+  <div style="position: relative;">
+    <div v-farewell.flex>Don't leave!</div>
+  </div>
+</template>
+```
+The callback is optional
 
 ## License
 ```
