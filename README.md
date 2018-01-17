@@ -8,6 +8,7 @@
 [![version](https://img.shields.io/npm/v/vue-farewell.svg?style=flat-square)](http://npm.im/vue-farewell)
 [![downloads](https://img.shields.io/npm/dm/vue-farewell.svg?style=flat-square)](http://npm-stat.com/charts.html?package=vue-farewell&from=2018-01-16)
 [![travis build](https://img.shields.io/travis/SahajR/pokemon-names-and-types.svg?style=flat-square)](https://travis-ci.org/SahajR/vue-farewell)
+[![size](http://img.badgesize.io/SahajR/vue-farewell/master/dist/lib/vue-farewell.min.js?compression=gzip&style=flat-square&label=only)](dist/lib/vue-farewell.min.js)
 ![alt text](assets/demo.gif "Demo GIF")
 
 ## Usage
