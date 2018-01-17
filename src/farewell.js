@@ -32,12 +32,12 @@ export default (options = {}) => ({
     const isAggressive = options.aggressive === true
     const delay = asNumber(options.delay, 0)
     const sensitivity = asNumber(options.sensitivity, 20)
+    const cookieExpire = setDefaultCookieExpire(options.cookieExpire) || ''
+    const cookieDomain = options.cookieDomain ? ';domain=' + options.cookieDomain : ''
+    const cookieName = options.cookieName ? options.cookieName : FIRED_ONCE_KEY
+    const sitewide = options.sitewide === true ? ';path=/' : ''
     let timer = null
     let disableKeydown = false
-    let cookieExpire = setDefaultCookieExpire(options.cookieExpire) || ''
-    let cookieDomain = options.cookieDomain ? ';domain=' + options.cookieDomain : ''
-    let cookieName = options.cookieName ? options.cookieName : FIRED_ONCE_KEY
-    let sitewide = options.sitewide === true ? ';path=/' : ''
 
     // Cookie helpers
     const parseCookies = () => {
@@ -76,22 +76,6 @@ export default (options = {}) => ({
     }
 
     const disable = () => {
-      if (typeof options.cookieExpire !== 'undefined') {
-        cookieExpire = setDefaultCookieExpire(options.cookieExpire)
-      }
-
-      if (options.sitewide === true) {
-        sitewide = ';path=/'
-      }
-
-      if (typeof options.cookieDomain !== 'undefined') {
-        cookieDomain = ';domain=' + options.cookieDomain
-      }
-
-      if (typeof options.cookieName !== 'undefined') {
-        cookieName = options.cookieName
-      }
-
       document.cookie = cookieName + '=true' + cookieExpire + cookieDomain + sitewide
       html.removeEventListener('mouseleave', handleMouseLeave)
       html.removeEventListener('mouseenter', handleMouseEnter)
