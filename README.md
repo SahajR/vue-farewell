@@ -58,13 +58,13 @@ Vue.use(farewellDirectivePlugin, options)
 
 | Option name | Type | Description |
 | ------ | ------ | ------ |
-| sensitivity | Number | How close the mouse needs to be to fire the exit (tolerance) |
-| delay | Number | Once an exit is recorded, how long after should events fire |
+| sensitivity | Number | How close the mouse needs to be to fire the exit (tolerance). The higher this value, the earlier the exit intent is identified. |
+| delay | Number | Once an exit intent is recorded, the time after which the callback events should be fired. |
 | cookieName | String | The key that will be used to store the cookie that logs if the user has exited once. Default: `fired_once` |
 | cookieDomain | String | The cookie's domain |
 | cookieExpire | Number | The number of days that mark the cookie's expiration. Default: `7 days` |
 | sitewide | Boolean | Sets the scope of the cookie to site-wide |
-| aggressive | Boolean | Will fire every time the user tries to leave. Default: false |
+| aggressive | Boolean | Will fire every time the user tries to leave. Default: `false` |
 | elementHiddenByDefault | Boolean | Will make the attached element hidden by default. Default: `true` |
 | elementDisplayStyleOnFire | String | Will make the attached element's display style from 'none' to this value once an exit is triggered. Default: `block` |
 
