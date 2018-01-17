@@ -1,7 +1,7 @@
 import farewellDirective from './farewell'
 export const farewellDirectivePlugin = {
-  install (Vue) {
-    Vue.directive('farewell', farewellDirective)
+  install (Vue, options) {
+    Vue.directive('farewell', farewellDirective(options))
   }
 }
 export default farewellDirective

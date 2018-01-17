@@ -1,16 +1,43 @@
-export default {
+export default (options = {}) => ({
   bind (el, binding) {
     if (typeof document === 'undefined' || !el) {
       return
     }
 
+    const getDefaultElementDisplayStyle = () => {
+      const displayStyles = ['inline', 'block', 'flex', 'inline-block', 'inline-flex', 'inline-table', 'list-item', 'run-in',
+        'table', 'inherit', 'initial', 'table-row', 'table-column', 'table-cell', 'table-row-group', 'table-column-group',
+        'table-header-group', 'table-footer-group', 'table-caption']
+      return displayStyles.indexOf(options.elementDisplayStyleOnFire) === -1 ? 'block' : options.elementDisplayStyleOnFire
+    }
+
+    if (options.elementHiddenByDefault === true) {
+      el.style.display = 'none'
+    }
+
+    const asNumber = (value, defaultValue) => {
+      if (typeof value === 'undefined') return defaultValue
+      return isNaN(Number(value)) ? defaultValue : value
+    }
+
+    const setDefaultCookieExpire = (days) => {
+      var ms = asNumber(days, 7) * 24 * 60 * 60 * 1000
+      var date = new Date()
+      date.setTime(date.getTime() + ms)
+      return `; expires=${date.toUTCString()}`
+    }
+
     const FIRED_ONCE_KEY = 'fired_once'
     const html = document.documentElement
-    const isAggressive = binding.modifiers.aggressive
-    const delay = 0
-    const sensitivity = 20
+    const isAggressive = options.aggressive === true
+    const delay = asNumber(options.delay, 0)
+    const sensitivity = asNumber(options.sensitivity, 20)
     let timer = null
     let disableKeydown = false
+    let cookieExpire = setDefaultCookieExpire(options.cookieExpire) || ''
+    let cookieDomain = options.cookieDomain ? ';domain=' + options.cookieDomain : ''
+    let cookieName = options.cookieName ? options.cookieName : FIRED_ONCE_KEY
+    let sitewide = options.sitewide === true ? ';path=/' : ''
 
     // Cookie helpers
     const parseCookies = () => {
@@ -26,7 +53,7 @@ export default {
     const checkCookieValue = (name, value) => parseCookies()[name] === value
 
     // Methods
-    const isDisabled = () => checkCookieValue(FIRED_ONCE_KEY, 'true') && !isAggressive
+    const isDisabled = () => checkCookieValue(cookieName, 'true') && !isAggressive
 
     const handleMouseLeave = (e) => {
       if (e.clientY > sensitivity) { return }
@@ -49,7 +76,23 @@ export default {
     }
 
     const disable = () => {
-      document.cookie = FIRED_ONCE_KEY + '=true'
+      if (typeof options.cookieExpire !== 'undefined') {
+        cookieExpire = setDefaultCookieExpire(options.cookieExpire)
+      }
+
+      if (options.sitewide === true) {
+        sitewide = ';path=/'
+      }
+
+      if (typeof options.cookieDomain !== 'undefined') {
+        cookieDomain = ';domain=' + options.cookieDomain
+      }
+
+      if (typeof options.cookieName !== 'undefined') {
+        cookieName = options.cookieName
+      }
+
+      document.cookie = cookieName + '=true' + cookieExpire + cookieDomain + sitewide
       html.removeEventListener('mouseleave', handleMouseLeave)
       html.removeEventListener('mouseenter', handleMouseEnter)
       html.removeEventListener('keydown', handleKeyDown)
@@ -57,7 +100,7 @@ export default {
 
     const fire = () => {
       if (isDisabled()) { return }
-      if (el) { el.style.display = binding.modifiers.flex ? 'flex' : 'block' }
+      if (el) { el.style.display = getDefaultElementDisplayStyle() }
       if (typeof binding.value === 'function') {
         binding.value()
       }
@@ -80,4 +123,4 @@ export default {
   unbind (el) {
     el.$destroy()
   }
-}
+})

@@ -15,7 +15,10 @@
 import Vue from 'vue'
 import { farewellDirectivePlugin } from './lib'
 
-Vue.use(farewellDirectivePlugin)
+Vue.use(farewellDirectivePlugin, {
+  cookieName: 'hasSeenExitModal',
+  elementDisplayStyleOnFire: 'flex'
+})
 
 export default {
   name: 'app',

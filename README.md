@@ -1,8 +1,8 @@
 ![alt text](assets/logo.png "Demo GIF")
 # vue-farewell
 > A vue directive to know when a user is leaving the page
-> 
-> Inspired by [ouibounce](https://github.com/carlsednaoui/ouibounce).
+>
+> Port of [ouibounce](https://github.com/carlsednaoui/ouibounce).
 
 [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg?style=flat-square)](https://github.com/semantic-release/semantic-release)
 [![travis build](https://img.shields.io/travis/SahajR/pokemon-names-and-types.svg?style=flat-square)](https://travis-ci.org/SahajR/vue-farewell)
@@ -41,22 +41,31 @@ export default {
 }
 ```
 
-## Modifiers
+## Options
+You may pass options while installing the directive globally.
+```js
+import Vue from 'vue'
+import { farewellDirectivePlugin } from 'vue-farewell'
 
-| modifier | Description |
-| ------ | ------ |
-| aggressive | Will fire every time the user tries to leave |
-| flex | Will make the popup provided to display `flex` instead of `block` |
+const options = {
+  cookieName: 'someCustomCookieName'
+}
 
-
-```vue
-<template>
-  <div style="position: relative;">
-    <div v-farewell.flex>Don't leave!</div>
-  </div>
-</template>
+Vue.use(farewellDirectivePlugin, options)
 ```
-The callback is optional
+
+| Option name | Type | Description |
+| ------ | ------ | ------ |
+| sensitivity | Number | How close the mouse needs to be to fire the exit (tolerance) |
+| delay | Number | Once an exit is recorded, how long after should events fire |
+| cookieName | String | The key that will be used to store the cookie that logs if the user has exited once. Default: `fired_once` |
+| cookieDomain | String | The cookie's domain |
+| cookieExpire | Number | The number of days that mark the cookie's expiration. Default: `7 days` |
+| sitewide | Boolean | Sets the scope of the cookie to site-wide |
+| aggressive | Boolean | Will fire every time the user tries to leave. Default: false |
+| elementHiddenByDefault | Boolean | Will make the attached element hidden by default. Default: `true` |
+| elementDisplayStyleOnFire | String | Will make the attached element's display style from 'none' to this value once an exit is triggered. Default: `block` |
+
 
 ## License
 ```
