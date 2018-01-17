@@ -5,6 +5,8 @@
 > Port of [ouibounce](https://github.com/carlsednaoui/ouibounce).
 
 [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg?style=flat-square)](https://github.com/semantic-release/semantic-release)
+[![version](https://img.shields.io/npm/v/vue-farewell.svg?style=flat-square)](http://npm.im/vue-farewell)
+[![downloads](https://img.shields.io/npm/dm/vue-farewell.svg?style=flat-square)](http://npm-stat.com/charts.html?package=vue-farewell&from=2018-01-16)
 [![travis build](https://img.shields.io/travis/SahajR/pokemon-names-and-types.svg?style=flat-square)](https://travis-ci.org/SahajR/vue-farewell)
 ![alt text](assets/demo.gif "Demo GIF")
 
