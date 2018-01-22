@@ -4,4 +4,4 @@ export const farewellDirectivePlugin = {
     Vue.directive('farewell', farewellDirective(options))
   }
 }
-export default farewellDirective
+export default farewellDirective()
